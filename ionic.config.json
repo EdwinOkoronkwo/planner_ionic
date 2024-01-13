@@ -1,0 +1,7 @@
+{
+  "name": "plannerIonicRxjs",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
