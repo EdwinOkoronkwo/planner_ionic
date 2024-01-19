@@ -1,7 +1,7 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 import {
   BehaviorSubject,
   EMPTY,
@@ -10,56 +10,22 @@ import {
   map,
   tap,
 } from 'rxjs';
-import { DeclarativetaskService } from '../../services/declarativetask.service';
-import { DeclarativegoalService } from '../../services/declarativegoal.service';
-import { LoadingService } from '../../services/loading.service';
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButton,
-  IonText,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-} from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { ITask } from 'src/models/ITask.model';
 import { GlobalService } from 'src/services/global.service';
-import { TaskFormComponent } from './task-form/task-form.component';
+import { DeclarativegoalService } from 'src/services/declarativegoal.service';
+import { DeclarativetaskService } from 'src/services/declarativetask.service';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: 'app-task-achievement',
+  templateUrl: './task-achievement.page.html',
+  styleUrls: ['./task-achievement.page.scss'],
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    ExploreContainerComponent,
-    RouterLink,
-    CommonModule,
-    IonButton,
-    IonText,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
-  ],
+  imports: [IonicModule, CommonModule, FormsModule],
 })
-export class Tab1Page {
+export class TaskAchievementPage implements OnInit {
   isLoading = false;
   selectedGoalSubject = new BehaviorSubject<number>(0);
   selectedGoalAction$ = this.selectedGoalSubject.asObservable();
-  // selectedStatusSubject = new BehaviorSubject<string>('');
-  // selectedStatusAction$ = this.selectedStatusSubject.asObservable();
   selectedGoalId!: number;
   errorMessageSubject = new BehaviorSubject<string>('');
   errorMessageAction$ = this.errorMessageSubject.asObservable();
@@ -73,19 +39,16 @@ export class Tab1Page {
   status$ = this.taskService.status$;
 
   //Combining action stream from select with data stream from Students API
-  filteredTasks$ = combineLatest([
-    this.tasks$,
-    this.selectedGoalAction$,
-    // this.selectedStatusAction$,
-  ]).pipe(
+  filteredTasks$ = combineLatest([this.tasks$, this.selectedGoalAction$]).pipe(
     tap((data) => {
-      // this.loadingService.hideLoader();
       this.isLoading = false;
       this.global.hideLoader();
     }),
     map(([tasks, selectedGoalId]) => {
-      return tasks.filter((task) =>
-        selectedGoalId ? task.goalId === selectedGoalId : true
+      return tasks.filter(
+        (task) =>
+          (selectedGoalId ? task.goalId === selectedGoalId : true) &&
+          task.status === 'Done'
       );
     })
   );
@@ -143,16 +106,5 @@ export class Tab1Page {
       }
       this.global.errorToast(msg);
     }
-  }
-  async modalAdd() {
-    const options = {
-      component: TaskFormComponent,
-      componentProps: {
-        from: 'tab1',
-      },
-      cssClass: 'home-modal',
-      swipeToClose: true,
-    };
-    await this.global.createModal(options);
   }
 }

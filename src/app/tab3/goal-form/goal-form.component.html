@@ -1,0 +1,46 @@
+<div *ngIf="viewModel$ | async">
+  <div>
+    <h3>{{ goalId ? "Update " : "Add " }}Goal</h3>
+    <div>
+      <form [formGroup]="goalForm" (ngSubmit)="onGoalSubmit()">
+        <div class="my-2">
+          <label for="">Name </label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+        <div class="my-2">
+          <label for="">Description </label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <div class="my-2">
+          <label for="">Start Date </label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="start_date"
+          />
+        </div>
+        <div class="my-2">
+          <label for="">End Date </label>
+          <input type="date" class="form-control" formControlName="end_date" />
+        </div>
+        <div class="my-2">
+          <label for="">Status </label>
+          <select class="form-select" formControlName="status">
+            <option value="">Select Status</option>
+            <option [value]="s" *ngFor="let s of status$ | async">
+              {{ s }}
+            </option>
+          </select>
+        </div>
+        <div class="my-2">
+          <button type="submit" class="btn btn-primary">
+            {{ goalId ? "Update" : "Add" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

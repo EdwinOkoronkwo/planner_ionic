@@ -1,0 +1,38 @@
+<div *ngIf="viewModel$ | async">
+  <h3>{{ noteId ? "Update " : "Add " }}Note</h3>
+  <div>
+    <form [formGroup]="noteForm" (ngSubmit)="onNoteSubmit()">
+      <div class="my-2">
+        <label for="">Name </label>
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+      <div class="my-2">
+        <label for="">Details </label>
+        <textarea class="form-control" formControlName="details"></textarea>
+      </div>
+      <div class="my-2">
+        <label for="">Importance </label>
+        <select class="form-select" formControlName="importance">
+          <option value="">Select Importance</option>
+          <option [value]="i" *ngFor="let i of importance$ | async">
+            {{ i }}
+          </option>
+        </select>
+      </div>
+      <div class="my-2">
+        <label for="">Task </label>
+        <select class="form-select" formControlName="taskId">
+          <option value="">Select Task</option>
+          <option [value]="task.id" *ngFor="let task of tasks$ | async">
+            {{ task.name }}
+          </option>
+        </select>
+      </div>
+      <div class="my-2">
+        <button type="submit" class="btn btn-primary">
+          {{ noteId ? "Update" : "Add" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

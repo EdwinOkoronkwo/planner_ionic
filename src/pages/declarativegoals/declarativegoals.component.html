@@ -1,0 +1,55 @@
+<div class="row" *ngIf="errorMessageAction$ | async as errorMessage">
+  <div class="col-md-12">
+    <div class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Goals Data</h3>
+    <div class="row">
+      <div class="col-md-8 text-end">
+        <a routerLink="/declarativegoals/add" class="btn btn-primary"
+          >Add Goal</a
+        >
+      </div>
+    </div>
+    <table class="table" *ngIf="goals$ | async as goals">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let goal of goals">
+          <td>{{ goal.id }}</td>
+          <td>{{ goal.name }}</td>
+          <td>{{ goal.description }}</td>
+          <td>{{ goal.start_date | date : "longDate" }}</td>
+          <td>{{ goal.end_date | date : "longDate" }}</td>
+          <td>{{ goal.status }}</td>
+          <td>
+            <div>
+              <a
+                [routerLink]="['/declarativegoals/edit', goal.id]"
+                class="btn btn-info"
+                >Update</a
+              >
+              <button class="btn btn-danger" (click)="onDeleteGoal(goal)">
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,40 +1,21 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { DeclarativegoalService } from '../../services/declarativegoal.service';
-import { LoadingService } from '../../services/loading.service';
-import { BehaviorSubject, EMPTY, catchError, tap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { IGoal } from '../../models/IGoal.models';
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButton,
-  IonText,
-} from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { BehaviorSubject, EMPTY, catchError, map, tap } from 'rxjs';
 import { GlobalService } from 'src/services/global.service';
+import { DeclarativegoalService } from 'src/services/declarativegoal.service';
+import { IGoal } from 'src/models/IGoal.models';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
+  selector: 'app-goal-achievement',
+  templateUrl: './goal-achievement.page.html',
+  styleUrls: ['./goal-achievement.page.scss'],
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    ExploreContainerComponent,
-    CommonModule,
-    RouterLink,
-    IonButton,
-    IonText,
-  ],
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink],
 })
-export class Tab3Page implements OnInit {
+export class GoalAchievementPage implements OnInit {
   isLoading = false;
   errorMessageSubject = new BehaviorSubject<string>('');
   errorMessageAction$ = this.errorMessageSubject.asObservable();
@@ -43,9 +24,9 @@ export class Tab3Page implements OnInit {
       this.errorMessageSubject.next(error);
       return EMPTY;
     }),
-    // map((goals) => {
-    //   return goals.filter((goal: any) => goal.status === 'Done');
-    // }),
+    map((goals: any[]) => {
+      return goals.filter((goal: any) => goal.status === 'Done');
+    }),
     tap((data) => {
       this.isLoading = false;
       this.global.hideLoader();

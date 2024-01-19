@@ -1,0 +1,295 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>{{ taskId ? "Update " : "Add " }}Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div *ngIf="viewModel$ | async as viewModel">
+  <div>
+    <form [formGroup]="taskForm" (ngSubmit)="onTaskSubmit()">
+      <ion-list lines="none">
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-input
+            label="Name"
+            type="text"
+            formControlName="name"
+            required
+          ></ion-input>
+          <ion-icon
+            *ngIf="nameFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="nameFormControl?.touched && nameFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Name is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-textarea
+            label="Description"
+            type="text"
+            formControlName="description"
+            required
+          ></ion-textarea>
+          <ion-icon
+            *ngIf="descriptionFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="descriptionFormControl?.touched && descriptionFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Description is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label>Start Date</ion-label>
+          <ion-datetime
+            label="Start Date"
+            presentation="date"
+            [preferWheel]="true"
+            formControlName="start_date"
+          ></ion-datetime>
+          <ion-icon
+            *ngIf="startDateFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="startDateFormControl?.touched && startDateFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Start Date is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label>End Date</ion-label>
+          <ion-datetime
+            presentation="date"
+            [preferWheel]="true"
+            formControlName="end_date"
+          ></ion-datetime>
+          <ion-icon
+            *ngIf="endDateFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="endDateFormControl?.touched && endDateFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* End Date is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label color="medium" position="floating"> </ion-label>
+          <ion-select label="Status" formControlName="status" required>
+            <ion-select-option *ngFor="let s of status$ | async" [value]="s">{{
+              s
+            }}</ion-select-option>
+          </ion-select>
+          <ion-icon
+            *ngIf="statusFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="statusFormControl?.touched && statusFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Status is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label color="medium" position="floating"> </ion-label>
+          <ion-select label="Goal" formControlName="goalId" required>
+            <ion-select-option
+              [value]="goal.id"
+              *ngFor="let goal of goals$ | async"
+              >{{ goal.name }}</ion-select-option
+            >
+          </ion-select>
+          <ion-icon
+            *ngIf="goalIdFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="goalIdFormControl?.touched && goalIdFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Goal is required.</p>
+        </ion-text>
+        <div class="ion-padding-horizontal">
+          <ion-button
+            color="primary"
+            type="submit"
+            expand="block"
+            [disabled]="!taskForm.valid"
+          >
+            <ion-text color="white"> {{ taskId ? "Update" : "Add" }} </ion-text>
+          </ion-button>
+        </div>
+      </ion-list>
+    </form>
+  </div>
+</div> -->
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>{{ taskId ? "Update " : "Add " }}Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div *ngIf="viewModel$ | async as viewModel">
+  <div>
+    <form [formGroup]="taskForm" (ngSubmit)="onTaskSubmit()">
+      <ion-list lines="none">
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-input
+            label="Name"
+            type="text"
+            formControlName="name"
+            required
+          ></ion-input>
+          <ion-icon
+            *ngIf="nameFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="nameFormControl?.touched && nameFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Name is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-textarea
+            label="Description"
+            type="text"
+            formControlName="description"
+            required
+          ></ion-textarea>
+          <ion-icon
+            *ngIf="descriptionFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="descriptionFormControl?.touched && descriptionFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Description is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label>Start Date</ion-label>
+          <ion-datetime
+            label="Start Date"
+            presentation="date"
+            [preferWheel]="true"
+            formControlName="start_date"
+          ></ion-datetime>
+          <ion-icon
+            *ngIf="startDateFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="startDateFormControl?.touched && startDateFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Start Date is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label>End Date</ion-label>
+          <ion-datetime
+            presentation="date"
+            [preferWheel]="true"
+            formControlName="end_date"
+          ></ion-datetime>
+          <ion-icon
+            *ngIf="endDateFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="endDateFormControl?.touched && endDateFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* End Date is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label color="medium" position="floating"> </ion-label>
+          <ion-select label="Status" formControlName="status" required>
+            <ion-select-option *ngFor="let s of status$ | async" [value]="s">{{
+              s
+            }}</ion-select-option>
+          </ion-select>
+          <ion-icon
+            *ngIf="statusFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="statusFormControl?.touched && statusFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Status is required.</p>
+        </ion-text>
+        <ion-item color="light" class="ion-margin-bottom">
+          <ion-label color="medium" position="floating"> </ion-label>
+          <ion-select label="Goal" formControlName="goalId" required>
+            <ion-select-option
+              [value]="goal.id"
+              *ngFor="let goal of goals$ | async"
+              >{{ goal.name }}</ion-select-option
+            >
+          </ion-select>
+          <ion-icon
+            *ngIf="goalIdFormControl.valid"
+            name="checkmark-outline"
+            slot="end"
+            color="success"
+          ></ion-icon>
+        </ion-item>
+        <ion-text
+          color="danger"
+          *ngIf="goalIdFormControl?.touched && goalIdFormControl?.errors?.['required']"
+        >
+          <p class="errorMsg">* Goal is required.</p>
+        </ion-text>
+        <div class="ion-padding-horizontal">
+          <ion-button
+            color="primary"
+            type="submit"
+            expand="block"
+            [disabled]="!taskForm.valid"
+          >
+            <ion-text color="white"> {{ taskId ? "Update" : "Add" }} </ion-text>
+          </ion-button>
+        </div>
+      </ion-list>
+    </form>
+  </div>
+</div>

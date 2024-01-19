@@ -1,0 +1,34 @@
+[Plans for App]
+
+1. App Name: Food Delivery App
+2. Short Description: A mobile app that enables users identify nearby restaurants and place
+orders for meals.
+3. Features:
+3.1 Login
+3.2 Landing page showing List of restaurants
+3.3 Page for searching restaurants. Google maps to be used
+3.4 Menu Screen that list the items
+3.4 Page for cart
+3.5 Page to manage account (show customer info, list previous orders and ability to add
+addresses of restaurants)
+3.6 Admin Panel (to be used for adding items, restaurants, banners/cover images and
+use of camera for taking photo)
+
+4.Technology:
+4.1 Backend (NodeJS, MariaDB/Sequelize CLI ORM, TypeScript)
+4.2 Frontend (Angular Standalone, Ionic Standalone, TypeScript)
+
+5. List future work features:
+5.1 Email authentication
+5.2 Integration of payment such as Stripe
+5.3 Publish App to Play Store and Apple Store
+5.4 Web application option
+5.5 Write test cases
+
+6. Identify users of your application (persona)
+6.1 Customers that want to order food, update their profile, and select and save preferred
+addresses of restaurants
+6.2 Admin to manage the upload of food menu items, restaurants (CRUD operations)
+
+7. Application to be built
+  Mobile App.

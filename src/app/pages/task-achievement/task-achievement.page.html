@@ -1,0 +1,62 @@
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start" href="/tabs/tab1">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title> Achieved Tasks </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <div class="row" *ngIf="errorMessageAction$ | async as errorMessage">
+      <div class="col-md-12">
+        <div class="alert alert-danger">{{ errorMessage }}</div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="filteredTasks$ | async">
+      <div class="col-md-12">
+        <h3>Tasks Data</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <select class="form-select" (change)="onGoalChange($event)">
+              <option value="">Select a Goal</option>
+              <option [value]="goal.id" *ngFor="let goal of goals$ | async">
+                {{ goal.name }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-8 text-end">
+            <a routerLink="/tabs/add-task" class="btn btn-primary">Add Task</a>
+          </div>
+        </div>
+        <table class="table" *ngIf="filteredTasks$ | async as tasks">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <th>Goal Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <td>{{ task.id }}</td>
+              <td>{{ task.name }}</td>
+              <td>{{ task.description }}</td>
+              <td>{{ task.start_date | date : "longDate" }}</td>
+              <td>{{ task.end_date | date : "longDate" }}</td>
+              <td>{{ task.status }}</td>
+              <td>{{ task.goalName }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ion-content>
+</ion-content>

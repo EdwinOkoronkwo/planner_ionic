@@ -1,3 +1,12 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" href="/tabs/tab3">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Achieved Goals </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <div class="row" *ngIf="errorMessageAction$ | async as errorMessage">
     <div class="col-md-12">
